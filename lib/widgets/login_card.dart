@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:libraryapp/screens/forgot.dart';
+import 'package:libraryapp/screens/register.dart';
 
 class LoginCard extends StatefulWidget {
   const LoginCard({super.key});
@@ -88,12 +90,11 @@ class _LoginCardState extends State<LoginCard> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          // Navigator.of(context).push(
-                          //   MaterialPageRoute(
-                          //     builder: (context) =>
-                          //         const ForgorScreen(),
-                          //   ),
-                          // );
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const ForgorScreen(),
+                            ),
+                          );
                         },
                         child: Text(
                           'نسيت كلمة المرور',
@@ -104,12 +105,11 @@ class _LoginCardState extends State<LoginCard> {
                       ),
                       TextButton(
                         onPressed: () {
-                          // Navigator.of(context).push(
-                          //   MaterialPageRoute(
-                          //     builder: (context) =>
-                          //         const RegisterScreen(),
-                          //   ),
-                          // );
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const RegisterScreen(),
+                            ),
+                          );
                         },
                         child: Text(
                           'تسجيل جديد',

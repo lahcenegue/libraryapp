@@ -33,6 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: screenHeight * 0.60,
                     width: screenWidth * 0.75,
                     decoration: BoxDecoration(
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: const [
                         BoxShadow(
@@ -55,11 +56,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(
                             height: 45,
                             child: TextField(
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 fillColor: Colors.grey.shade100,
                                 filled: true,
-                                hintText: 'رقم الهوية',
+                                hintText: 'الاسم',
                                 contentPadding: const EdgeInsets.only(
                                     left: 15, bottom: 11, top: 11, right: 15),
                                 border: OutlineInputBorder(
@@ -73,11 +74,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(
                             height: 45,
                             child: TextField(
-                              keyboardType: TextInputType.datetime,
+                              keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 fillColor: Colors.grey.shade100,
                                 filled: true,
-                                hintText: 'تاريخ الميلاد',
+                                hintText: 'اللقب',
                                 contentPadding: const EdgeInsets.only(
                                     left: 15, bottom: 11, top: 11, right: 15),
                                 border: OutlineInputBorder(
@@ -92,11 +93,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(
                             height: 45,
                             child: TextField(
-                              keyboardType: TextInputType.phone,
+                              keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 fillColor: Colors.grey.shade100,
                                 filled: true,
-                                hintText: 'رقم الجوال',
+                                hintText: 'البريج الالكتروني',
                                 contentPadding: const EdgeInsets.only(
                                     left: 15, bottom: 11, top: 11, right: 15),
                                 border: OutlineInputBorder(
@@ -106,23 +107,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ),
 
-                          // الامايل
-                          SizedBox(
-                            height: 45,
-                            child: TextField(
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                fillColor: Colors.grey.shade100,
-                                filled: true,
-                                hintText: 'الايميل',
-                                contentPadding: const EdgeInsets.only(
-                                    left: 15, bottom: 11, top: 11, right: 15),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
-                          ),
                           SizedBox(
                             height: 45,
                             child: TextField(
