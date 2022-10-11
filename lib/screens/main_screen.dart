@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:libraryapp/data/librory_list.dart';
+import 'package:libraryapp/screens/services.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -26,7 +27,12 @@ class MainScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 50, right: 50),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ServicesScreen(
+                            name: libraryList.libraryList[index]['name'],
+                          )));
+                },
                 child: Text(
                   libraryList.libraryList[index]['name'],
                 ),
