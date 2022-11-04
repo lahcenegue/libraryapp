@@ -3,14 +3,14 @@ import 'package:libraryapp/screens/forgot.dart';
 import 'package:libraryapp/screens/main_screen.dart';
 import 'package:libraryapp/screens/register.dart';
 
-class LoginCard extends StatefulWidget {
-  const LoginCard({super.key});
+class LoginLibrary extends StatefulWidget {
+  const LoginLibrary({super.key});
 
   @override
-  State<LoginCard> createState() => _LoginCardState();
+  State<LoginLibrary> createState() => _LoginLibraryState();
 }
 
-class _LoginCardState extends State<LoginCard> {
+class _LoginLibraryState extends State<LoginLibrary> {
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -86,41 +86,41 @@ class _LoginCardState extends State<LoginCard> {
                                   : Icons.visibility))),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const ForgorScreen(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          'نسيت كلمة المرور',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const RegisterScreen(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          'تسجيل جديد',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         Navigator.of(context).push(
+                  //           MaterialPageRoute(
+                  //             builder: (context) => const ForgorScreen(),
+                  //           ),
+                  //         );
+                  //       },
+                  //       child: const Text(
+                  //         'نسيت كلمة المرور',
+                  //         style: TextStyle(
+                  //           fontSize: 18,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         Navigator.of(context).push(
+                  //           MaterialPageRoute(
+                  //             builder: (context) => const RegisterScreen(),
+                  //           ),
+                  //         );
+                  //       },
+                  //       child: const Text(
+                  //         'تسجيل جديد',
+                  //         style: TextStyle(
+                  //           fontSize: 18,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50),

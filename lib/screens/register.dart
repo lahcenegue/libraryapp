@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:libraryapp/screens/login.dart';
 
+import '../data/sqldb.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -9,7 +11,14 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  SqlDb sqlDb = SqlDb();
+  GlobalKey<FormState> formstate = GlobalKey();
+  TextEditingController firstName = TextEditingController();
+  TextEditingController secondName = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController email = TextEditingController();
   bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -52,10 +61,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          //رقم الهوية
+                          //name
                           SizedBox(
                             height: 45,
-                            child: TextField(
+                            child: TextFormField(
+                              controller: firstName,
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 fillColor: Colors.grey.shade100,
@@ -70,10 +80,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ),
 
-                          // تاريخ الميلاد
+                          // second name
                           SizedBox(
                             height: 45,
-                            child: TextField(
+                            child: TextFormField(
+                              controller: secondName,
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 fillColor: Colors.grey.shade100,
@@ -88,16 +99,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ),
 
-                          //رقم الجوال
+                          //email
 
                           SizedBox(
                             height: 45,
-                            child: TextField(
+                            child: TextFormField(
+                              controller: email,
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 fillColor: Colors.grey.shade100,
                                 filled: true,
-                                hintText: 'البريج الالكتروني',
+                                hintText: 'البريد الالكتروني',
                                 contentPadding: const EdgeInsets.only(
                                     left: 15, bottom: 11, top: 11, right: 15),
                                 border: OutlineInputBorder(
@@ -109,7 +121,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                           SizedBox(
                             height: 45,
-                            child: TextField(
+                            child: TextFormField(
+                              controller: password,
                               keyboardType: TextInputType.visiblePassword,
                               obscureText: _obscureText,
                               enableSuggestions: false,
@@ -141,11 +154,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   borderRadius: BorderRadius.circular(10.0)),
                             ),
                             onPressed: () async {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const LoginScreen(),
-                                ),
-                              );
+                              int response = await sqlDb.insertData('''
+                                     INSERT INTO persons ("first_name" , "second_name", "email", "password")
+                                     VALUES ("${firstName.text}", "${secondName.text}", "${email.text}", "${password.text}")
+                                      ''');
+
+                              print('persson=======================$response');
+
+                              if (response > 0) {
+                                Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                    builder: (context) => const LoginScreen(),
+                                  ),
+                                  ((route) => false),
+                                );
+                              }
                             },
                             child: const Text('تسجيل'),
                           ),

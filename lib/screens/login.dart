@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:libraryapp/widgets/login_card.dart';
+import 'package:libraryapp/widgets/login_persson.dart';
+import '../widgets/login_library.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -33,8 +34,8 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             body: const TabBarView(
               children: [
-                LoginCard(),
-                LoginCard(),
+                LoginPersson(),
+                LoginLibrary(),
               ],
             ),
           ))),
