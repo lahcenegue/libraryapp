@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:libraryapp/data/sqldb.dart';
+import 'package:libraryapp/screens/dashboard.dart';
 import 'package:libraryapp/screens/forgot.dart';
 import 'package:libraryapp/screens/main_screen.dart';
 import 'package:libraryapp/screens/register_library.dart';
@@ -145,7 +146,7 @@ class _LoginLibraryState extends State<LoginLibrary> {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => const MainScreen(),
+                          builder: (context) => const Dashboard(),
                         ),
                       );
                     },
