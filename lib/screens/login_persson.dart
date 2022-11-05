@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:libraryapp/data/sqldb.dart';
 import 'package:libraryapp/screens/forgot.dart';
 import 'package:libraryapp/screens/main_screen.dart';
-import 'package:libraryapp/screens/register.dart';
+import 'package:libraryapp/screens/register_persson.dart';
 
-class LoginLibrary extends StatefulWidget {
-  const LoginLibrary({super.key});
+class LoginPersson extends StatefulWidget {
+  const LoginPersson({super.key});
 
   @override
-  State<LoginLibrary> createState() => _LoginLibraryState();
+  State<LoginPersson> createState() => _LoginPerssonState();
 }
 
-class _LoginLibraryState extends State<LoginLibrary> {
+class _LoginPerssonState extends State<LoginPersson> {
+  SqlDb sqlDb = SqlDb();
+
+  Future<List<Map>> readData() async {
+    List<Map> response = await sqlDb.readData("SELECT * FROM persons");
+    return response;
+  }
+
+  String? email;
+  String? password;
   bool _obscureText = true;
+
+  @override
+  void initState() {
+    super.initState();
+    readData();
+  }
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -45,7 +62,10 @@ class _LoginLibraryState extends State<LoginLibrary> {
                 children: [
                   SizedBox(
                     height: 45,
-                    child: TextField(
+                    child: TextFormField(
+                      onChanged: (value) {
+                        email = value;
+                      },
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         fillColor: Colors.grey.shade100,
@@ -61,7 +81,10 @@ class _LoginLibraryState extends State<LoginLibrary> {
                   ),
                   SizedBox(
                     height: 45,
-                    child: TextField(
+                    child: TextFormField(
+                      onChanged: (value) {
+                        password = value;
+                      },
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: _obscureText,
                       enableSuggestions: false,
@@ -86,41 +109,41 @@ class _LoginLibraryState extends State<LoginLibrary> {
                                   : Icons.visibility))),
                     ),
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     TextButton(
-                  //       onPressed: () {
-                  //         Navigator.of(context).push(
-                  //           MaterialPageRoute(
-                  //             builder: (context) => const ForgorScreen(),
-                  //           ),
-                  //         );
-                  //       },
-                  //       child: const Text(
-                  //         'نسيت كلمة المرور',
-                  //         style: TextStyle(
-                  //           fontSize: 18,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     TextButton(
-                  //       onPressed: () {
-                  //         Navigator.of(context).push(
-                  //           MaterialPageRoute(
-                  //             builder: (context) => const RegisterScreen(),
-                  //           ),
-                  //         );
-                  //       },
-                  //       child: const Text(
-                  //         'تسجيل جديد',
-                  //         style: TextStyle(
-                  //           fontSize: 18,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const ForgorScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'نسيت كلمة المرور',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const RegisterPersson(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'تسجيل جديد',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50),

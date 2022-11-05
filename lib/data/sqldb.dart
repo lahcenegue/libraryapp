@@ -15,7 +15,7 @@ class SqlDb {
 
   initialDb() async {
     String databasePath = await getDatabasesPath(); //مسار حفظ الملف
-    String path = p.join(databasePath, 'register.db'); //اسم الداتا بيز
+    String path = p.join(databasePath, 'library.db'); //اسم الداتا بيز
     Database mydb = await openDatabase(
       path,
       onCreate: _onCreate,
@@ -29,6 +29,9 @@ class SqlDb {
     Batch batch = db.batch();
     batch.execute(
         'CREATE TABLE "persons" ("id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "first_name" TEXT, "second_name" TEXT, "email" TEXT, "password" TEXT)');
+
+    batch.execute(
+        'CREATE TABLE "library" ("id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "first_name" TEXT, "second_name" TEXT, "email" TEXT, "city" TEXT, "password" TEXT)');
 
     await batch.commit();
   }

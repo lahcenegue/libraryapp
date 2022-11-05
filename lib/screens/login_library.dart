@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:libraryapp/data/sqldb.dart';
 import 'package:libraryapp/screens/forgot.dart';
 import 'package:libraryapp/screens/main_screen.dart';
-import 'package:libraryapp/screens/register.dart';
+import 'package:libraryapp/screens/register_library.dart';
 
-class LoginPersson extends StatefulWidget {
-  const LoginPersson({super.key});
+class LoginLibrary extends StatefulWidget {
+  const LoginLibrary({super.key});
 
   @override
-  State<LoginPersson> createState() => _LoginPerssonState();
+  State<LoginLibrary> createState() => _LoginLibraryState();
 }
 
-class _LoginPerssonState extends State<LoginPersson> {
+class _LoginLibraryState extends State<LoginLibrary> {
+  SqlDb sqlDb = SqlDb();
+  Future<List<Map>> readData() async {
+    List<Map> response = await sqlDb.readData("SELECT * FROM library");
+    return response;
+  }
+
+  String? email;
+  String? password;
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -45,7 +54,10 @@ class _LoginPerssonState extends State<LoginPersson> {
                 children: [
                   SizedBox(
                     height: 45,
-                    child: TextField(
+                    child: TextFormField(
+                      onChanged: (value) {
+                        email = value;
+                      },
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         fillColor: Colors.grey.shade100,
@@ -61,7 +73,10 @@ class _LoginPerssonState extends State<LoginPersson> {
                   ),
                   SizedBox(
                     height: 45,
-                    child: TextField(
+                    child: TextFormField(
+                      onChanged: (value) {
+                        password = value;
+                      },
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: _obscureText,
                       enableSuggestions: false,
@@ -108,7 +123,7 @@ class _LoginPerssonState extends State<LoginPersson> {
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => const RegisterScreen(),
+                              builder: (context) => const RegisterLibrary(),
                             ),
                           );
                         },

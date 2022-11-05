@@ -138,6 +138,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                             actions: [
                               TextButton(
                                   onPressed: () {
+                                    Navigator.of(context).pop();
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                           builder: (context) =>

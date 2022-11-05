@@ -3,14 +3,14 @@ import 'package:libraryapp/screens/login.dart';
 
 import '../data/sqldb.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class RegisterPersson extends StatefulWidget {
+  const RegisterPersson({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<RegisterPersson> createState() => _RegisterPerssonState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterPerssonState extends State<RegisterPersson> {
   SqlDb sqlDb = SqlDb();
   GlobalKey<FormState> formstate = GlobalKey();
   TextEditingController firstName = TextEditingController();
@@ -158,8 +158,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                      INSERT INTO persons ("first_name" , "second_name", "email", "password")
                                      VALUES ("${firstName.text}", "${secondName.text}", "${email.text}", "${password.text}")
                                       ''');
-
-                              print('persson=======================$response');
 
                               if (response > 0) {
                                 Navigator.of(context).pushAndRemoveUntil(
